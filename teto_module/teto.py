@@ -21,7 +21,7 @@ print('(main.py) max : {}, min: {}'.format(_max, _min))
 
 # If (max+min)>0, we want get a large positive number as skim_frequency
 # 	So we divide to a small positive number, means _SKIM
-# If (max+min)<0, we want to get a small negative number as skim_frequency
+# If (max+min)<0, we want to get a negative number which is close to 0 as skim_frequency
 # 	So we divide to a large positive number, means (1/_SKIM)
 if (_max+_min)>0:
 	skim_frequency = (_max+_min)/_SKIM
@@ -38,7 +38,7 @@ for j, dot in enumerate(morse_wave):
 print("(morse_decode) %s" % morse_from_mono_wave(morse_wave))
 
 # Plot spectrogram
-plt.pcolormesh(t,f,Sxx)
+plt.pcolormesh(t,f,Sxx,nperseg=1000)
 # Plot morse
 plt.plot(t,remove_pointy_peaks(morse_wave))
 plt.show()

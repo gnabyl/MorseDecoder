@@ -19,6 +19,12 @@ def extract_from_file(file, low=0, high=99999999):
 	
 	# Get spectrogram of raw wave
 	f, t, Sxx = signal.spectrogram(signalData, samplingFrequency)
+
+	# DONT UNCOMMENT THIS UNTIL MORSE_DECODE.PY IS FIXED
+	# current_dis = signals[i + 1][0] - signals[i][1]
+	# IndexError: list index out of range
+	# f, t, Sxx = signal.spectrogram(signalData, fs = samplingFrequency, nperseg = 1024)
+
 	Sxx = 10 * np.log10(Sxx)
 
 	# Get min of Sxx, min must not be -inf
