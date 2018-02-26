@@ -1,4 +1,5 @@
 from morse_extract import extract_from_file
+from morse_decode import morse_from_mono_wave, remove_pointy_peaks
 import matplotlib.pyplot as plt
 
 # Only calculate with frequencies which is
@@ -11,7 +12,7 @@ LOW = 16000
 _SKIM = 0.3
 
 # Get morse wave
-morse_wave, (t,f,Sxx) = extract_from_file('./resources/morse_bannghe.wav', low=LOW, high=HIGH)
+morse_wave, (t,f,Sxx) = extract_from_file('../resources/morse_namthahnu.wav', low=LOW, high=HIGH)
 
 _max = max(morse_wave)
 _min = min(morse_wave)
@@ -34,8 +35,10 @@ for j, dot in enumerate(morse_wave):
 	else:
 		morse_wave[j] = 0
 
+print("(morse_decode) %s" % morse_from_mono_wave(morse_wave))
+
 # Plot spectrogram
 plt.pcolormesh(t,f,Sxx)
 # Plot morse
-plt.plot(t,morse_wave)
+plt.plot(t,remove_pointy_peaks(morse_wave))
 plt.show()
